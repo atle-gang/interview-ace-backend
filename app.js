@@ -31,7 +31,7 @@ app.use(cors());
 app.use(express.json());
 app.use(middleware.morganMiddleware);
 
-app.use("./api/questions", questionsRouter);
+app.use("/api/questions", questionsRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
