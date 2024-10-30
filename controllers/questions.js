@@ -1,9 +1,13 @@
 const questionsRouter = require("express").Router();
 const Question = require("../models/questionModel");
 
-questionsRouter.get("/", async (request, response) => {
-  const questions = await Question.find({});
-  response.json(questions);
+questionsRouter.get("/", async (request, response, next) => {
+  try {
+    const questions = await Question.find({});
+    response.json(questions);
+  } catch (error) {
+    next(error)
+  }
 });
 
 questionsRouter.post("/", async (request, response, next) => {
