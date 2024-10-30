@@ -28,4 +28,13 @@ questionsRouter.post("/", async (request, response, next) => {
   }
 });
 
+questionsRouter.delete("/:id", async (request, response, next) => {
+  try {
+    await Question.findByIdAndDelete(request.params.id);
+    response.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = questionsRouter;
