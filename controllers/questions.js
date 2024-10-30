@@ -6,11 +6,13 @@ questionsRouter.get("/", async (request, response, next) => {
     const questions = await Question.find({});
     response.json(questions);
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
 questionsRouter.post("/", async (request, response, next) => {
+  const body = request.body;
+
   try {
     const question = new Question({
       type: body.type,
